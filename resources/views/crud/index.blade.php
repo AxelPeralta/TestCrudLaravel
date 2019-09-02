@@ -83,8 +83,10 @@
     </tr>
 
   </table>
-    <a align='center' href="{{url('/crud/usuarios')}}">Usuarios</a>
+
 </form>
+
+<a align='center' href="{{url('/crud/usuarios')}}">Usuarios</a>
 @include ('includes.footer')
 
 

@@ -26,21 +26,47 @@ class crudController extends Controller
 
         $usuarios = User::join("address","users.id","=","address.users_id")->get();
                 // ->where('users.estado','=',1)
-                
 
+        
         return view('crud.obtenerUsuarios',[
             'usuario' => $usuarios
         ]);
     }
 
-    // public function detallesUsuarios($id){
-        
-    //     $usuarios= $User::table('usuario')->where('id','=',$id)->firts();
-        
-    //     return view('crud.detallesUsuarios',[
-    //         'usuarios' => $usuarios
-    //     ]);
-    // }
+     public function detallesUsuarios(){
+        $id = request('id');
+    
+        $usuarios = User::join("address","users.id","=","address.users_id")->where('users.id','=',$id)->get();
+
+        return view('crud.detallesUsuarios',[
+            'usuarios' => $usuarios
+        ]);
+     }
+
+     public function updateUser($id){
+        //$id = request('pkid');
+        // $username = request('username');
+
+        $user = User::find($id);
+        // var_dump($id);
+        // var_dump($user);
+        // die();
+        $user->username = request('username');
+        $user->lastname = request('lastname');
+        $user->lastname2 = request('lastname2');
+        $user->age = request('age');
+        $user->save();
+
+        $address = Address::where('users_id', $id)->first();
+        $address->street = request('street');
+        $address->colony = request('colony');
+        $address->delegation = request('delegation');
+        $address->postalcode = request('cp');
+        $address->save();
+
+    
+        return redirect()->route('obtenerUsuarios');
+     }
 
     public function insertUser(){
         // Genera el insert a la base de datos

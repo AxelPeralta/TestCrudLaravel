@@ -24,8 +24,9 @@ Route::get('/', function () {
  Route::group(['prefix' => '/crud'],function (){
      Route::get('registro','CrudController@index')->name('index');; //listo
      Route::get('usuarios','CrudController@obtenerUsuarios')->name('obtenerUsuarios');//listo
-     Route::get('detalles','CrudController@detallesUsuarios');
+     Route::post('detalles','CrudController@detallesUsuarios')->name('detallesUsuario');//listo
+     Route::patch('update/{id}','CrudController@updateUser')->name('updateUser');
      Route::post('save','CrudController@insertUser'); //listo
-     Route::delete('destroy', 'CrudController@destroyUser');
+     Route::delete('destroy', 'CrudController@destroyUser');//listo
  });
 

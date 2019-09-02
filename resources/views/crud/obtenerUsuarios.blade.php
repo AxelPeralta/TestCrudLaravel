@@ -15,12 +15,12 @@
         <th>colonia</th>
         <th>delegacion</th>
         <th>codigopostal</th>
-        <th>detalles</th>
+        <th  spancol="2">detalles</th>
     </tr>
-@foreach ( $usuario as $dato)
+@foreach ($usuario as $dato)
     <tr>
         <td>
-            {{$loop->iteration}}
+            {{$dato->users_id}}
         </td>
         <td>
             {{$dato->username}}
@@ -46,8 +46,12 @@
         <td>
             {{$dato->postalcode}}
         </td>
-        <td>
-            Editar | 
+        <td spancol="2">
+        <form action="{{action('CrudController@detallesUsuarios')}}" method='POST'>
+            {{csrf_field()}}
+            <input type="hidden" name="id" value="{{$dato->users_id}}">
+            <button type="submit">Editar</button>
+            </form> 
             <form action="{{action('CrudController@destroyUser')}}" method='POST'>
             {{csrf_field()}}
             <input type="hidden" name="id" value="{{$dato->users_id}}">

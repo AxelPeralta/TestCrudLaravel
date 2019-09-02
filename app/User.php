@@ -14,5 +14,10 @@ class User extends Model
 
     protected $fillable = ['username','lastname','lastname2','age'];
 
+    public function address()
+    {
+        return $this->hasMany('App\Address');
+    }
+
 
 }
