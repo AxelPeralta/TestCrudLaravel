@@ -13,7 +13,11 @@ class Address extends Model
     protected $fillable = ['street','colony','delegation','postalcode','users_id'];
 
     
-
+    public function user()
+    {
+        return $this->belongsTo('App\Users');
+    }
+}
 
     
-}
+
